@@ -11,6 +11,7 @@ from selenium import webdriver
 import time
 import pandas as pd
 import os 
+from selenium.webdriver.common import By
 
 
 
@@ -44,7 +45,8 @@ def logIn(driver):
     
     #email
     email = driver.find_element_by_id('modalUserEmail')
-    email.send_keys("####") #!!!!!!!!
+    email.send_keys("##") #!!
+    driver.find_element(By.CLASS_NAME,"css-2etp8b evpplnh1").click()
     
     
     #pssw
@@ -99,7 +101,6 @@ for i in range(0,numberOfPages(driver)):
         
         
 df = pd.DataFrame(text,columns =['text'])
-df.to_csv('df.csv')
 
             
             
