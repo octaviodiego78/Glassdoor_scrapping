@@ -10,6 +10,7 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 import time
 import pandas as pd
+import os 
 
 
 
@@ -43,12 +44,12 @@ def logIn(driver):
     
     #email
     email = driver.find_element_by_id('modalUserEmail')
-    email.send_keys("octaviodiego78@gmail.com") #!!!!!!!!
+    email.send_keys("####") #!!!!!!!!
     
     
     #pssw
     pssw = driver.find_element_by_id('modalUserPassword')
-    pssw.send_keys("Dp.103260")   #!!!!!!!!
+    pssw.send_keys("#####")   #!!!!!!!!
     
     
     #log in
@@ -64,8 +65,10 @@ def pageScrapper(link):
 
 #-------------------------------------------- main ------------------------------------------- 
 
-main_link = 'https://www.glassdoor.com.mx/Empleo/jalisco-negocios-internacionales-empleos-SRCH_IL.0,7_IS5737_KO8,32.htm?suggestCount=0&suggestChosen=false&clickSource=searchBtn&typedKeyword=&typedLocation=Jalisco%252C%2520Mexico&context=Jobs&dropdown=0'
-driver = webdriver.Chrome(executable_path=r"C:\\chromedriver.exe")
+main_link = 'https://www.glassdoor.com.mx/Empleo/estados-unidos-data-scientist-empleos-SRCH_IL.0,14_IN1_KO15,29.htm?suggestCount=0&suggestChosen=false&clickSource=searchBtn&typedKeyword=data%2520scientist%2520&typedLocation=Estados%2520Unidos&context=Jobs&dropdown=0'
+#options = webdriver.ChromeOptions();
+#options.add_argument('headless');
+driver = webdriver.Chrome(executable_path='{}\{}'.format(os.getcwd(),'chromedriver.exe')) #,options=options
 
 #Log in funciton
 logIn(driver)
@@ -96,7 +99,7 @@ for i in range(0,numberOfPages(driver)):
         
         
 df = pd.DataFrame(text,columns =['text'])
-df.to_csv('majo.csv')
+df.to_csv('df.csv')
 
             
             
